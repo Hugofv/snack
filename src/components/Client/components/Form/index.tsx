@@ -5,13 +5,13 @@ import Label from '../../../../library/Label';
 import Radio from '../../../../library/Radio';
 import Button from '../../../../library/Button';
 import { withFormik, FormikProps } from 'formik';
-import Client from '../../../../models/Client';
+import ClientModel from '../../../../models/ClientModel';
 
 type Props = {
-  createClient: (values: Client) => JSX.Element;
+  createClient: (values: ClientModel) => JSX.Element;
 };
 
-const Form = ({ values, handleChange, setFieldValue, handleSubmit, isSubmitting, createClient }: Props & FormikProps<Client>) => {
+const Form = ({ values, handleChange, setFieldValue, handleSubmit, isSubmitting, createClient }: Props & FormikProps<ClientModel>) => {
 
   return (
     <form onSubmit={handleSubmit}>
@@ -39,7 +39,7 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, isSubmitting,
   )
 }
 
-export default withFormik<Props, Client>({
+export default withFormik<Props, ClientModel>({
   mapPropsToValues: () => ({ name: '', document: '', type: 'individual' }),
 
   validate: values => {

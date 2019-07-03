@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Swipe } from "react-swipe-component"
 import List from './components/List';
 import Form from './components/Form';
 import { Flex } from '../../library/FlexBox';
-import * as client_actions from '../../actions/client';
-import { bindActionCreators } from 'redux'
+import { fetchClients } from '../../actions/client';
+import { bindActionCreators, Dispatch, Action } from 'redux'
 import { connect } from 'react-redux';
 
-const Client: React.FC = ({ createClient }: any) => {
+interface Props {
+  readonly fetchClients: () => Action;
+}
+
+const Client: React.FC<Props> = ({ createClient, fetchClients, clients }: any) => {
+
+  useEffect(() => fetchClients(), [])
 
   return (
     <Flex fd='column' h='100%' m='2em'>
@@ -15,21 +21,21 @@ const Client: React.FC = ({ createClient }: any) => {
       <Swipe
         nodeName="div"
         className="test"
-        onSwipedDown={() => console.log('swip down')}
+        onSwipedDown={() => fetchClients()}
       >
-        <List />
-
+        <List {...{ clients }} />
       </Swipe>
     </Flex>
   )
 }
 
-function mapStateToProps() {
-  return {}
-}
+const mapStateToProps = (state: any): any => ({
+  clients: state.client.clients
+});
 
-function mapDispatchToProps(dispatch: any) {
-  return bindActionCreators({ ...client_actions }, dispatch)
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Client);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
+  fetchClients
+}, dispatch);
+
+export default connect<Props>(mapStateToProps, mapDispatchToProps)(Client);

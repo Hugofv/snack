@@ -1,3 +1,4 @@
 import { combineReducers } from "redux";
+import client from './client';
 
-export default combineReducers({  });
+export default combineReducers({ client });

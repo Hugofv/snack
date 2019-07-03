@@ -1,7 +1,13 @@
 import React from 'react';
 import Table, { TableContainer, TableHeaderRow, TableHeaderCell, TableRow, TableCell } from '../../../../library/Table';
+import ClientModel from '../../../../models/ClientModel';
 
-const List: React.FC = () => {
+interface Props {
+  clients: ClientModel[]
+}
+
+const List: React.FC<Props> = ({ clients }) => {
+
   return (
     <TableContainer>
       <Table>
@@ -11,11 +17,15 @@ const List: React.FC = () => {
           <TableHeaderCell>Documento</TableHeaderCell>
         </TableHeaderRow>
 
-        <TableRow>
-          <TableCell data-title='Nome'>Hugo</TableCell>
-          <TableCell data-title='Nome'>Hugo</TableCell>
-          <TableCell data-title='Nome'>Hugo</TableCell>
-        </TableRow>
+        {
+          clients.map((client, idx) => <TableRow key={idx}>
+            <TableCell data-title='Tipo'>{client.type}</TableCell>
+            <TableCell data-title='Nome'>{client.name}</TableCell>
+            <TableCell data-title='Documento'>{client.document}</TableCell>
+          </TableRow>
+          )
+        }
+
       </Table>
     </TableContainer>
   )

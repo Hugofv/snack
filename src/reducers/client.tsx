@@ -1,12 +1,26 @@
-const initialState = {
-  error: '',
-  loading: false,
-  clients: []
+import ClientModel from "../models/ClientModel";
+import { Reducer } from "redux";
+
+export interface IClientState {
+  readonly clients: ClientModel[]
+  readonly loading: boolean
+  readonly error: boolean
+}
+
+const initialState: IClientState = {
+  clients: [],
+  error: false,
+  loading: false
 };
 
-const card = (state = initialState, action) => {
+export interface FetchClient {
+  type: 'FETCH_RECIPE_SUCCESS';
+  clients: ClientModel[];
+}
+
+const client: Reducer<IClientState, FetchClient> = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_CLIENT':
+    case 'FETCH_RECIPE_SUCCESS':
       let { clients } = action;
       return { ...state, clients }
 
@@ -15,4 +29,4 @@ const card = (state = initialState, action) => {
   }
 };
 
-export default card;
+export default client;
