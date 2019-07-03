@@ -1,6 +1,8 @@
 import React from 'react';
 import Table, { TableContainer, TableHeaderRow, TableHeaderCell, TableRow, TableCell } from '../../../../library/Table';
 import ClientModel from '../../../../models/ClientModel';
+import formatCnpj from '../../../../utils/formatCnpj';
+import formatCpf from '../../../../utils/formatCpf';
 
 interface Props {
   clients: ClientModel[]

@@ -13,7 +13,7 @@ const Button = ({ children, loading, primary, small, ...rest }: any) => (
       </svg>
     </i>
     <span style={{ display: 'inline-block', pointerEvents: 'none' }}>
-      {children}
+      {!loading && children}
     </span>
   </ButtonRaw>
 )
@@ -24,11 +24,10 @@ export default styled(Button)`
   font-weight: 700;
   padding: 12px 32px;
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
-  background: hsla(216, 40%, 55%, 1);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
   color: white;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-  background-color: hsla(201, 100%, 96%, 1);
+  background-color: rgba(0, 178, 255, 1);
   ${props => props.small && css`
     font-size: 15px;
     font-weight: 600;
@@ -36,7 +35,7 @@ export default styled(Button)`
     padding: 8px 24px;
   `}
   ${(props: any) => props.loading && css`
-    background-color: hsla(203,  82%, 76%, 1);
+    background-color: rgba(0, 178, 255, 1);
     pointer-events: none;
   `}
   &:focus {
@@ -57,7 +56,6 @@ export default styled(Button)`
     ${props => props.loading && css`
       opacity: 1;
       margin-left: 0px;
-      margin-right: 8px;
     `}
   }
 `
