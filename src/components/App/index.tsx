@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import { globalCSS } from './styles';
-import { Global } from '@emotion/core';
+
 import Client from '../Client';
+import { Global } from '@emotion/core';
+import { globalCSS } from './styles';
 
 const App: React.FC = () => {
   return (

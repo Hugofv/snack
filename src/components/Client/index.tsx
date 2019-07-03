@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import { Swipe } from "react-swipe-component"
-import List from './components/List';
-import Form from './components/Form';
-import { Flex } from '../../library/FlexBox';
 import * as client_actions from '../../actions/client';
-import { bindActionCreators, Dispatch, Action } from 'redux'
+
+import { Action, Dispatch, bindActionCreators } from 'redux'
+import React, { useEffect } from 'react';
+
+import { Flex } from '../../library/FlexBox';
+import Form from './components/Form';
+import List from './components/List';
+import { Swipeable }  from 'react-swipeable';
 import { connect } from 'react-redux';
 
 interface Props {
@@ -17,15 +19,15 @@ const Client: React.FC<Props> = ({ createClient, fetchClient, clients }: any) =>
   useEffect(() => { fetchClient() }, [])
 
   return (
-    <Flex fd='column' h='100%' m='2em'>
+    <Flex fd='column' h='100%' m='2em' data-testid='client'>
       <Form createClient={createClient} />
-      <Swipe
+      <Swipeable
         nodeName="div"
         className="test"
-        onSwipedDown={() => fetchClient()}
+        onSwipedDown={() => console.log('sfdsd')}
       >
-        <List {...{ clients }} />
-      </Swipe>
+      <List {...{ clients }} />
+      </Swipeable >
     </Flex>
   )
 }
