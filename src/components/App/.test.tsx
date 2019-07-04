@@ -11,6 +11,11 @@ const store = mockStore({
   client: {
     clients: []
   },
+  alert: {
+    message: '',
+    title: '',
+    type: ''
+  },
   error: false,
   loading: false
 })

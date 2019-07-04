@@ -71,7 +71,7 @@ export const TableCell = styled.div`
       line-height: 1;
       font-weight: bold;
       text-transform: uppercase;
-      color: hsla(205,  20%, 66%, 1);
+      color: white;
       display: block;
     }
   }
@@ -80,9 +80,9 @@ export const TableCell = styled.div`
     vertical-align: middle;
     font-size: inherit;
     padding-right: 16px;
+    padding-left: 16px;
     &:first-of-type {
       height: 40px;
-      padding-left: 16px;
     }
   }
   ${width}

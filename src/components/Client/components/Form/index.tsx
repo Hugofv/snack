@@ -11,6 +11,8 @@ import formatCnpj from '../../../../utils/formatCnpj';
 import formatCpf from '../../../../utils/formatCpf';
 import { Action } from 'redux';
 
+import { container } from './styles';
+
 /**
  * Props do component
  */
@@ -29,12 +31,13 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, touched, erro
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Flex w='60%' fw='wrap' ai='center' fd='row' jc='space-around'>
+    <form onSubmit={handleSubmit} data-testid="form">
+      <Flex css={container} fw='wrap' ai='center' fd='row' jc='space-around'>
         <Flex mb={3} ml={3} fd='row'>
           <Radio
             value='individual'
             name='type'
+            containerStyle={{ marginRight: '1em' }}
             label='Individual'
             onChange={(e: string) => {
               setFieldValue('type', e)
@@ -52,13 +55,13 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, touched, erro
             }} checked={values.type === 'business'} />
         </Flex>
 
-        <Box mb={3}>
+        <Box mb={3} pr={30}>
           <Label>Nome<span>*</span></Label>
           <Input name='name' onChange={handleChange} />
           <ErrorField fieldName='name' errors={errors} touched={touched} />
         </Box>
 
-        <Box mb={3}>
+        <Box mb={3} pr={30}>
           <Label>Documento<span>*</span></Label>
           <Input name='document'
             value={values.document}
@@ -67,7 +70,7 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, touched, erro
           <ErrorField fieldName='document' errors={errors} touched={touched} />
         </Box>
 
-        <Box>
+        <Box pb={17}>
           <Button type='submit' loading={loading}>Salvar</Button>
         </Box>
       </Flex>

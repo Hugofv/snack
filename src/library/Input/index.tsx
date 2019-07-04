@@ -9,8 +9,8 @@ export default styled.input`
   font-family: inherit;
   line-height: 1.2;
   padding: 7px 10px;
-  width: 100%;
   transition: all 0.3s;
+  width: 100%;
   ${width}
   ${height}
   border-radius: 3px;

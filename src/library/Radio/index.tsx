@@ -2,9 +2,10 @@ import React, { useRef } from 'react'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-const Radio = ({ disabled = false, value, checked, label, tabIndex = 0, onChange = () => { }, labelStyle = { marginLeft: 8 }, containerStyle = { display: 'flex', alignItems: 'center', cursor: 'pointer', userSelect: 'none' }, ...rest }: any) => {
+const Radio = ({ disabled = false, value, checked, label, tabIndex = 0, onChange = () => { }, labelStyle = { marginLeft: 8 }, containerStyle, ...rest }: any) => {
   const checkboxRef = useRef<HTMLInputElement>(null)
   const checkRef = useRef<HTMLInputElement>(null)
+  containerStyle = { ...{ display: 'flex', alignItems: 'center', cursor: 'pointer', userSelect: 'none' }, ...containerStyle }
 
   const handleClick = () => {
     if (disabled) return false
