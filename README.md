@@ -1,4 +1,4 @@
-[Snack] Front End React com Typescript
+[Snack] Front End React with Typescript
 
 # Requirements
 Node.js [10.16.0](https://nodejs.org/dist/v10.16.0)\
