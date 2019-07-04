@@ -1,3 +1,4 @@
+import { FETCH_CLIENT_SUCCESS, FETCH_CLIENT } from '../actions/client/actionTypes';
 import ClientModel from "../models/ClientModel";
 import { Reducer } from "redux";
 
@@ -13,16 +14,14 @@ const initialState: IClientState = {
   loading: false
 };
 
-export interface FetchClient {
-  type: 'FETCH_RECIPE_SUCCESS';
-  clients: ClientModel[];
-}
-
-const client: Reducer<IClientState, FetchClient> = (state = initialState, action) => {
+const client: Reducer<IClientState> = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_RECIPE_SUCCESS':
+    case FETCH_CLIENT:
+      return { ...state, loading: true }
+
+    case FETCH_CLIENT_SUCCESS:
       let { clients } = action;
-      return { ...state, clients }
+      return { ...state, clients, loading: false }
 
     default:
       return state;

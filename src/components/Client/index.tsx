@@ -6,34 +6,30 @@ import React, { useEffect } from 'react';
 import { Flex } from '../../library/FlexBox';
 import Form from './components/Form';
 import List from './components/List';
-import { Swipeable }  from 'react-swipeable';
 import { connect } from 'react-redux';
+import ClientModel from '../../models/ClientModel';
 
 interface Props {
   readonly fetchClient: () => Action;
-  readonly createClient: () => Action;
+  readonly createClient: (client: ClientModel) => Action;
+  readonly deleteClient: (id: string) => Action;
 }
 
-const Client: React.FC<Props> = ({ createClient, fetchClient, clients }: any) => {
+const Client: React.FC<Props> = ({ createClient, fetchClient, deleteClient, clients, loading }: any) => {
 
-  useEffect(() => { fetchClient() }, [])
+  useEffect(() => { fetchClient() }, [fetchClient])
 
   return (
     <Flex fd='column' h='100%' m='2em' data-testid='client'>
-      <Form createClient={createClient} />
-      <Swipeable
-        nodeName="div"
-        className="test"
-        onSwipedDown={() => console.log('sfdsd')}
-      >
-      <List {...{ clients }} />
-      </Swipeable >
+      <Form {...{ createClient }} {...{ loading }} />
+      <List {...{ deleteClient }} {...{ clients }} />
     </Flex>
   )
 }
 
 const mapStateToProps = (state: any): any => ({
-  clients: state.client.clients
+  clients: state.client.clients,
+  loading: state.client.loading
 });
 
 

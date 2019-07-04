@@ -8,13 +8,14 @@ import { withFormik, FormikProps } from 'formik';
 import ClientModel from '../../../../models/ClientModel';
 import formatCnpj from '../../../../utils/formatCnpj';
 import formatCpf from '../../../../utils/formatCpf';
+import { Action } from 'redux';
 
 type Props = {
-  createClient: (values: ClientModel) => JSX.Element;
+  createClient: (values: ClientModel) => () => Action;
+  loading: boolean;
 };
 
-const Form = ({ values, handleChange, setFieldValue, handleSubmit, isSubmitting, createClient }: Props & FormikProps<ClientModel>) => {
-
+const Form = ({ values, handleChange, setFieldValue, handleSubmit, createClient, loading }: Props & FormikProps<ClientModel>) => {
 
   const isBusiness = () => {
     return values.document === 'business'
@@ -58,7 +59,7 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, isSubmitting,
         </Box>
 
         <Box>
-          <Button type='submit' loading={isSubmitting}>Salvar</Button>
+          <Button type='submit' loading={loading}>Salvar</Button>
         </Box>
       </Flex>
     </form>

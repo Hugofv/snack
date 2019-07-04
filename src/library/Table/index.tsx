@@ -29,10 +29,15 @@ export const TableHeader = styled.div`
   }
 `
 
-export const TableRow = styled.div`
+interface PropsTableRow {
+  background?: string;
+}
+
+export const TableRow = styled.div<PropsTableRow>`
   display: block;
   border-bottom: 1px solid hsla(202,  20%, 86%, 1);
   padding-top: 16px;
+  background-color: ${({ background }: PropsTableRow) => background};
   @media (min-width: 768px) {
     padding-top: 0;
     display: table-row;

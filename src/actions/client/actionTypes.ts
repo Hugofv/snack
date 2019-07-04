@@ -1,33 +1,33 @@
 import ClientModel from '../../models/ClientModel';
 
-/** Action types for usage with redux. */
-export const FETCH_RECIPE: 'FETCH_RECIPE' = 'FETCH_RECIPE';
-export const FETCH_RECIPE_SUCCESS: 'FETCH_RECIPE_SUCCESS' = 'FETCH_RECIPE_SUCCESS';
-export const FETCH_RECIPE_ERROR: 'FETCH_RECIPE_ERROR' = 'FETCH_RECIPE_ERROR';
-export const DELETE_RECIPE: 'DELETE_RECIPE' = 'DELETE_RECIPE';
-export const LOAD_RECIPES_SUCCESS: 'FETCH_RECIPE_SUCCESS' = 'FETCH_RECIPE_SUCCESS';
+export const FETCH_CLIENT: 'FETCH_CLIENT' = 'FETCH_CLIENT';
+export const FETCH_CLIENT_SUCCESS: 'FETCH_CLIENT_SUCCESS' = 'FETCH_CLIENT_SUCCESS';
+export const FETCH_CLIENT_ERROR: 'FETCH_CLIENT_ERROR' = 'FETCH_CLIENT_ERROR';
+export const DELETE_CLIENT: 'DELETE_CLIENT' = 'DELETE_CLIENT';
+export const SAVE_CLIENT_ERROR: 'SAVE_CLIENT_ERROR' = 'SAVE_CLIENT_ERROR';
+export const LOAD_CLIENTS_SUCCESS: 'FETCH_CLIENT_SUCCESS' = 'FETCH_CLIENT_SUCCESS';
 
-export interface SaveRecipe {
-  type: typeof FETCH_RECIPE
+export interface SaveClient {
+  type: typeof FETCH_CLIENT
 }
 
-export interface DeleteRecipe {
-  type: typeof DELETE_RECIPE
+export interface SaveClientSuccess {
+  type: typeof FETCH_CLIENT_SUCCESS
+  clients: ClientModel[]
+}
+
+export interface SaveClientError {
+  type: typeof SAVE_CLIENT_ERROR,
+}
+
+export interface DeleteClient {
+  type: typeof DELETE_CLIENT
   id: number;
 }
 
-export interface SaveRecipeSuccess {
-  type: typeof FETCH_RECIPE_SUCCESS
-  clients: ClientModel[]
-}
-
-export interface SaveRecipeError {
-  type: typeof FETCH_RECIPE_ERROR,
-}
-
 export interface fetchClientsSuccess {
-  type: typeof LOAD_RECIPES_SUCCESS
+  type: typeof LOAD_CLIENTS_SUCCESS
   clients: ClientModel[]
 }
 
-export type RecipeActions = SaveRecipe | SaveRecipeSuccess | DeleteRecipe | fetchClientsSuccess;
+export type ClientActions = SaveClient | SaveClientSuccess | DeleteClient | fetchClientsSuccess;
