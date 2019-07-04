@@ -3,6 +3,7 @@ import Input from '../../../../library/Input';
 import { Box, Flex } from '../../../../library/FlexBox';
 import Label from '../../../../library/Label';
 import Radio from '../../../../library/Radio';
+import ErrorField from '../../../../library/ErrorField';
 import Button from '../../../../library/Button';
 import { withFormik, FormikProps } from 'formik';
 import ClientModel from '../../../../models/ClientModel';
@@ -10,12 +11,18 @@ import formatCnpj from '../../../../utils/formatCnpj';
 import formatCpf from '../../../../utils/formatCpf';
 import { Action } from 'redux';
 
+/**
+ * Props do component
+ */
 type Props = {
   createClient: (values: ClientModel) => () => Action;
   loading: boolean;
 };
 
-const Form = ({ values, handleChange, setFieldValue, handleSubmit, createClient, loading }: Props & FormikProps<ClientModel>) => {
+/**
+ * Component Form.
+ */
+const Form = ({ values, handleChange, setFieldValue, handleSubmit, touched, errors, loading }: Props & FormikProps<ClientModel>) => {
 
   const isBusiness = () => {
     return values.document === 'business'
@@ -48,6 +55,7 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, createClient,
         <Box mb={3}>
           <Label>Nome<span>*</span></Label>
           <Input name='name' onChange={handleChange} />
+          <ErrorField fieldName='name' errors={errors} touched={touched} />
         </Box>
 
         <Box mb={3}>
@@ -56,6 +64,7 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, createClient,
             value={values.document}
             maxLength={isBusiness() ? 18 : 14}
             onChange={({ target: { value } }) => setFieldValue('document', isBusiness() ? formatCnpj(value) : formatCpf(value))} />
+          <ErrorField fieldName='document' errors={errors} touched={touched} />
         </Box>
 
         <Box>
@@ -66,6 +75,10 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, createClient,
   )
 }
 
+
+/**
+ * Connect da store com o connect.
+ */
 export default withFormik<Props, ClientModel>({
   mapPropsToValues: () => ({ name: '', document: '', type: 'individual' }),
 
@@ -73,15 +86,19 @@ export default withFormik<Props, ClientModel>({
     const errors: any = {};
 
     if (!values.name) {
-      errors.name = 'Required';
+      errors.name = 'Campo Obrigatório';
+    }
+
+    if (!values.document) {
+      errors.document = 'Campo Obrigatório';
     }
 
     return errors;
   },
 
-  handleSubmit: (values, { setSubmitting, props }) => {
+  handleSubmit: (values, { resetForm, props }) => {
     props.createClient(values);
-    setSubmitting(false);
+    resetForm();
   },
 
 })(Form);

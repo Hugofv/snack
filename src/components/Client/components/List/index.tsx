@@ -7,13 +7,24 @@ import { FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2'
 import { Action } from 'redux';
 
+/**
+ * Props do component.
+ */
 interface Props {
   readonly deleteClient: (id: string) => Action;
   clients: ClientModel[]
 }
 
+/**
+ * Component List.
+ */
 const List: React.FC<Props> = ({ clients, deleteClient }) => {
 
+  /**
+   * Método responsável por excluir cliente.
+   * 
+   * @param client 
+   */
   const deleteItem = (client: ClientModel) => {
     Swal.fire({
       title: 'Tem certeza que deseja excluir o cliente?',

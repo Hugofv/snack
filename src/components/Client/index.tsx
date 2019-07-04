@@ -9,12 +9,18 @@ import List from './components/List';
 import { connect } from 'react-redux';
 import ClientModel from '../../models/ClientModel';
 
+/**
+ * Props do component
+ */
 interface Props {
   readonly fetchClient: () => Action;
   readonly createClient: (client: ClientModel) => Action;
   readonly deleteClient: (id: string) => Action;
 }
 
+/**
+ * Component Client.
+ */
 const Client: React.FC<Props> = ({ createClient, fetchClient, deleteClient, clients, loading }: any) => {
 
   useEffect(() => { fetchClient() }, [fetchClient])
@@ -27,14 +33,25 @@ const Client: React.FC<Props> = ({ createClient, fetchClient, deleteClient, clie
   )
 }
 
+/**
+ * Método responsável por injetar dados da store no component Client.
+ * 
+ * @param state 
+ */
 const mapStateToProps = (state: any): any => ({
   clients: state.client.clients,
   loading: state.client.loading
 });
 
-
+/**
+ * Método responsável por injetar actions no component Client.
+ * @param dispatch 
+ */
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
   ...client_actions
 }, dispatch);
 
+/**
+ * Connect da store com o connect.
+ */
 export default connect<Props>(mapStateToProps, mapDispatchToProps)(Client);

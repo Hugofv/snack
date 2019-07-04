@@ -7,6 +7,9 @@ import { globalCSS } from './styles';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from '../../library/AlertTemplate'
 
+/**
+ * Options do alert.
+ */
 const options = {
   position: positions.TOP_RIGHT,
   timeout: 5000,
@@ -14,6 +17,9 @@ const options = {
   transition: transitions.SCALE
 }
 
+/**
+ * Component App.
+ */
 const App: React.FC = () => {
   return (
     <Fragment>

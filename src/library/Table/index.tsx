@@ -80,7 +80,7 @@ export const TableCell = styled.div`
     vertical-align: middle;
     font-size: inherit;
     padding-right: 16px;
-    &:first-child {
+    &:first-of-type {
       height: 40px;
       padding-left: 16px;
     }
