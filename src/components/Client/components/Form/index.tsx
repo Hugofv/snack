@@ -57,7 +57,7 @@ const Form = ({ values, handleChange, setFieldValue, handleSubmit, touched, erro
 
         <Box mb={3} pr={30}>
           <Label>Nome<span>*</span></Label>
-          <Input name='name' onChange={handleChange} />
+          <Input name='name' value={values.name} onChange={handleChange} />
           <ErrorField fieldName='name' errors={errors} touched={touched} />
         </Box>
 

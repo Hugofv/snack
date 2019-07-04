@@ -50,7 +50,7 @@ const List: React.FC<Props> = ({ clients, deleteClient }) => {
 
         {
           clients.map((client, idx) => <TableRow key={idx} background={client.type === 'business' ? '#ff6a00' : '#00b2ff'}>
-            <TableCell data-title='Tipo'>{client.type}</TableCell>
+            <TableCell data-title='Tipo'>{client.type === 'business' ? 'Jurídica' : 'Física'}</TableCell>
             <TableCell data-title='Nome'>{client.name}</TableCell>
             <TableCell data-title='Documento'>{client.type === 'business' ? formatCnpj(client.document) : formatCpf(client.document)}</TableCell>
             <TableCell data-title='Nome'><FaTrash style={{ cursor: 'pointer' }} onClick={() => deleteItem(client)} /></TableCell>
